@@ -14,13 +14,26 @@ const lang = import.meta.env.WEBSITE_LANGUAGE;
 const url = Astro.site;
 
 const config = {
-  locale: lang,
-  site_url: url,
-  logo_url: "https://nebulix.unfolding.io/logo.svg",
-  local_backend: true,
-  backend: {
-    name: "test-repo",
-  },
+	locale: lang,
+	site_url: url,
+	logo_url: 'https://nebulix.unfolding.io/nebulix-logo.svg',
+	local_backend: true,
+	backend: {
+		name: 'gitlab',
+		repo: 'nebulix-cms',
+		auth_type: 'pkce', // Required for pkce
+		app_id: 'e7ddcad6573202e353b17fb62c93956dc7193798563d9e974819b0ecd021bf9c', // Application ID from your GitLab settings
+		commit_messages: {
+			create: 'Create {{collection}} "{{slug}}"',
+			update: 'Update {{collection}} "{{slug}}"',
+			delete: 'Delete {{collection}} "{{slug}}"',
+			uploadMedia: 'Upload "{{path}}"',
+			deleteMedia: 'Delete "{{path}}"'
+		}
+	},
+	search: 'true',
+    ....
+}
   search: true,
   media_folder: "src/assets",
   public_folder: "/src/assets",
